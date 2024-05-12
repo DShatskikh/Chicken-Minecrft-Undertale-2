@@ -1,7 +1,7 @@
 .text {
     color: rgb(255, 255, 255);
     font-size: 40px;
-    -unity-font-definition: url('project://database/Assets/[0]%20Game/determinationmonorusbylyajk%20SDF.asset?fileID=11400000&guid=e5295e4084cdd8244a5db83643af6db3&type=2#determinationmonorusbylyajk SDF');
+    -unity-font-definition: url('project://database/Assets/[0]%20Game/Materials/determinationmonorusbylyajk%20SDF.asset?fileID=11400000&guid=e5295e4084cdd8244a5db83643af6db3&type=2#determinationmonorusbylyajk SDF');
     white-space: normal;
 }
 
@@ -19,7 +19,7 @@
     height: 99px;
     color: rgb(0, 162, 255);
     font-size: 40px;
-    -unity-font-definition: url('project://database/Assets/[0]%20Game/determinationmonorusbylyajk%20SDF.asset?fileID=11400000&guid=e5295e4084cdd8244a5db83643af6db3&type=2#determinationmonorusbylyajk SDF');
+    -unity-font-definition: url('project://database/Assets/[0]%20Game/Materials/determinationmonorusbylyajk%20SDF.asset?fileID=11400000&guid=e5295e4084cdd8244a5db83643af6db3&type=2#determinationmonorusbylyajk SDF');
     -unity-text-align: middle-center;
 }
 
@@ -98,4 +98,20 @@
     padding-right: 0;
     padding-bottom: 0;
     padding-left: 0;
+}
+
+.border {
+    border-left-color: rgb(255, 255, 255);
+    border-right-color: rgb(255, 255, 255);
+    border-top-color: rgb(255, 255, 255);
+    border-bottom-color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-top-width: 5px;
+    border-right-width: 5px;
+    border-bottom-width: 5px;
+    border-left-width: 5px;
 }
