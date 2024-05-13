@@ -9,12 +9,6 @@ namespace Game
     public class Monolog : MonoBehaviour
     {
         [SerializeField]
-        private AudioSource _audioSource;
-
-        [SerializeField] 
-        private AudioClip _clickSound;
-
-        [SerializeField]
         private TMP_Text _label;
 
         [SerializeField]
@@ -61,7 +55,7 @@ namespace Game
 
                 currentText += text[_countSymbol];
                 SetText(currentText);
-                _audioSource.Play();
+                GameData.TextAudioSource.Play();
                 yield return new WaitForSeconds(0.05f);
                 _countSymbol++;
             }
@@ -69,7 +63,7 @@ namespace Game
         
         public void Next()
         {
-            GameData.EffectAudioSource.clip = _clickSound;
+            GameData.EffectAudioSource.clip = GameData.ClickSound;
             GameData.EffectAudioSource.Play();
             
             if (_index >= _texts.Length)

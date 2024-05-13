@@ -426,9 +426,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 89
-        y: 81
-        width: 20
-        height: 20
+        y: 83
+        width: 18
+        height: 18
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -446,10 +446,10 @@ TextureImporter:
       name: Atlas_14
       rect:
         serializedVersion: 2
-        x: 110
-        y: 81
-        width: 20
-        height: 20
+        x: 108
+        y: 83
+        width: 18
+        height: 18
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

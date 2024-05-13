@@ -56,8 +56,11 @@ namespace Game
         private AudioMixerGroup _mixer;
         
         [SerializeField]
-        private AudioSource _effectAudioSource, _musicAudioSource;
+        private AudioSource _effectAudioSource, _musicAudioSource, _textAudioSource;
 
+        [SerializeField] 
+        private AudioClip _clickSound;
+        
         private void Awake()
         {
             if (FindObjectsOfType<Startup>().Length > 1)
@@ -98,7 +101,9 @@ namespace Game
             GameData.Startup = this;
             GameData.EffectAudioSource = _effectAudioSource;
             GameData.MusicAudioSource = _musicAudioSource;
+            GameData.TextAudioSource = _textAudioSource;
             GameData.Mixer = _mixer;
+            GameData.ClickSound = _clickSound;
             
             GameData.Health = GameData.MaxHealth;
             Application.targetFrameRate = 60;

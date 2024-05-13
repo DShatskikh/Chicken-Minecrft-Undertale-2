@@ -11,12 +11,6 @@ namespace Game
         private DialogView _view;
 
         [SerializeField]
-        private AudioSource _audioSource;
-        
-        [SerializeField] 
-        private AudioClip _clickSound;
-
-        [SerializeField]
         private Button _button;
         
         private Replica[] _replicas;
@@ -46,7 +40,7 @@ namespace Game
             if (!gameObject.activeSelf)
                 Debug.LogError("Ошибка");
             
-            GameData.EffectAudioSource.clip = _clickSound;
+            GameData.EffectAudioSource.clip = GameData.ClickSound;
             GameData.EffectAudioSource.Play();
             
             if (_indexReplica >= _replicas.Length)
@@ -83,7 +77,7 @@ namespace Game
 
                 currentText += text[_countSymbol];
                 _view.SetText(currentText);
-                _audioSource.Play();
+                GameData.TextAudioSource.Play();
                 yield return new WaitForSeconds(0.05f);
                 _countSymbol++;
             }

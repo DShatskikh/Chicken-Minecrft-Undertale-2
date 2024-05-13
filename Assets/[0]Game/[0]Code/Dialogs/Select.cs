@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,12 +10,6 @@ namespace Game
 {
     public class Select : MonoBehaviour
     {
-        [SerializeField] 
-        private AudioSource _audioSource;
-
-        [SerializeField] 
-        private AudioClip _clickSound;
-
         [SerializeField]
         private Button _yesButton;
         
@@ -26,6 +21,7 @@ namespace Game
         
         private string _text;
         private Coroutine _coroutine;
+
         private Action _yesAction;
         private Action _noAction;
 
@@ -71,7 +67,7 @@ namespace Game
             {
                 currentText += _text[_countSymbol];
                 SetText(currentText);
-                _audioSource.Play();
+                GameData.TextAudioSource.Play();
                 yield return new WaitForSeconds(0.05f);
                 _countSymbol++;
             }
@@ -93,7 +89,7 @@ namespace Game
         
         private void Close()
         {
-            GameData.EffectAudioSource.clip = _clickSound;
+            GameData.EffectAudioSource.clip = GameData.ClickSound;
             GameData.EffectAudioSource.Play();
             gameObject.SetActive(false);
             GameData.Character.enabled = true;

@@ -31,10 +31,14 @@ namespace Game
 
         [SerializeField]
         private float _maxVelocityY;
+
+        [SerializeField]
+        private float _maxJumpDuration;
         
         private bool _isInvulnerability;
 
         float _velocitySpeed = 0f;
+        float _jumpDuration = 0f;
         bool _isGround;
         
         [SerializeField]
@@ -54,7 +58,7 @@ namespace Game
             if (direction.y < 0)
                 direction.y = 0;
 
-            if (_isGround && direction.y > 0)
+            if (_isGround && direction.y > 0 && _jumpDuration < _maxJumpDuration)
                 _velocitySpeed = _jumpForce;
 
             //if (direction.y == 0 && _velocitySpeed > 0)
@@ -62,14 +66,19 @@ namespace Game
             
             if (!_isGround)
             {
+                _jumpDuration += Time.deltaTime;
+                
                 if (_velocitySpeed > _maxVelocityY)
                     _velocitySpeed = 0;
-                else if (_velocitySpeed > 0)
+                else if (_velocitySpeed > 0 && _jumpDuration < _maxJumpDuration)
                     _velocitySpeed += direction.y * _planingSpeed;
                 
                 _velocitySpeed -= _gravity;
                 position.y += _velocitySpeed * Time.deltaTime;
             }
+
+            if (_jumpDuration > _maxJumpDuration)
+                direction.y = 0;
             
             position += direction * _speed * Time.deltaTime;
             
@@ -82,6 +91,7 @@ namespace Game
                 {
                     _velocitySpeed = 0;
                     _isGround = true;
+                    _jumpDuration = 0;
                 }
                 else
                 {

@@ -6,6 +6,9 @@ namespace Game
     {
         [SerializeField] 
         private SpriteRenderer _spriteRenderer;
+
+        [SerializeField]
+        private GameObject _danger;
         
         [SerializeField] 
         private Animator _animator;
@@ -29,5 +32,8 @@ namespace Game
         {
             _animator.SetBool("IsMove", false);
         }
+
+        public void DangerSwitch(bool isActive) => 
+            _danger.SetActive(isActive);
     }
 }

@@ -158,7 +158,7 @@ namespace Game
         {
             gameObject.SetActive(false);
 
-            var disapperance = GameData.EnemyData.GameObject.AddComponent<SmoothDisappearance>();
+            var disapperance = GameData.EnemyData.GameObject.AddComponent<HideSmooth>();
             disapperance.SetDuration(0.5f);
             _sparePlaySound.Play();
             yield return new WaitForSeconds(0.5f);
