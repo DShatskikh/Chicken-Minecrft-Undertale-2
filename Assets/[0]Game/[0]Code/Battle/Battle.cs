@@ -21,7 +21,16 @@ namespace Game
         
         [SerializeField]
         private PlaySound _sparePlaySound;
+
+        [SerializeField]
+        private StateMachine _stateMachine;
+
+        [SerializeField]
+        private StartBattleState _startBattleState;
         
+        [SerializeField]
+        private PlayerTurnState _playerTurnState;
+
         private Label _healthLabel;
         private Label _enemyHealthLabel;
         private int _attackIndex;
@@ -53,33 +62,11 @@ namespace Game
         public void StartBattle()
         {
             _previousSound = GameData.MusicAudioSource.clip;
-            GameData.TimerBeforeAdsYG.gameObject.SetActive(false);
-            
             gameObject.SetActive(true);
-
-            GameData.Battle.transform.position = Camera.main.transform.position.SetZ(0).AddY(-3.5f) +
-                                                 (Vector3) GameData.EnemyData.StartBattleTrigger.Offset;
-            
-            GameData.EnemyData.GameObject.transform.SetParent(GameData.EnemyPoint);
-
-            if (GameData.EnemyData.GameObject.TryGetComponent(out SpriteRenderer spriteRenderer))
-            {
-                spriteRenderer.flipX = true;
-            }
-            
-            var character = GameData.Character;
-            character.enabled = false;
-            character.GetComponent<Collider2D>().isTrigger = true;
-            character.View.Flip(false);
-            
-            GameData.Health = GameData.MaxHealth;
-            EventBus.OnHealthChange.Invoke(GameData.MaxHealth, GameData.Health);
-            
-            GameData.BattleProgress = 0;
-            EventBus.OnBattleProgressChange?.Invoke(0);
-            
             _attackIndex = 0;
-
+            
+            _stateMachine.Initialize(_startBattleState);
+            
             if (_coroutine != null)
                 StopCoroutine(_coroutine);
             
