@@ -21,7 +21,7 @@ namespace Game
 
             _enemyObject.transform.position = GameData.EnemyPoint.position;
             GameData.Character.transform.position = GameData.CharacterPoint.position;
-            GetComponent<Battle>().StartBattle();
+            GetComponent<BattleStateMachine>().StartBattle();
         }
     }
 }

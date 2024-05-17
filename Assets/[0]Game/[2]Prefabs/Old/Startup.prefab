@@ -68,6 +68,7 @@ MonoBehaviour:
   _effectAudioSource: {fileID: 1436111887442314858}
   _musicAudioSource: {fileID: 6713232609774389252}
   _textAudioSource: {fileID: 6873261953831238621}
+  _clickSound: {fileID: 0}
 --- !u!1 &521310967906127507
 GameObject:
   m_ObjectHideFlags: 0

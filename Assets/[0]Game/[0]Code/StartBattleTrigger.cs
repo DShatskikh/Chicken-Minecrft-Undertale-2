@@ -39,7 +39,7 @@ namespace Game
             if (GetComponent<Collider2D>())
                 GetComponent<Collider2D>().enabled = false;
             
-            GameData.Battle.StartBattle();
+            GameData.BattleStateMachine.StartBattle();
             EventBus.OnPlayerWin += OnPlayerWin;
         }
 

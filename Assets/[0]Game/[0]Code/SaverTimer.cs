@@ -15,7 +15,7 @@ namespace Game
             while (true)
             {
                 yield return new WaitForSeconds(_saveTime);
-                yield return new WaitUntil(() => !GameData.Battle.gameObject.activeSelf);
+                yield return new WaitUntil(() => !GameData.BattleStateMachine.gameObject.activeSelf);
                 GameData.Saver.Save();
                 text.gameObject.SetActive(true);
                 

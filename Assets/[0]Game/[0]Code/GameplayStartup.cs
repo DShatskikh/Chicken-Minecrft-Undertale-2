@@ -3,6 +3,7 @@ using Cinemachine;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Game
@@ -15,8 +16,8 @@ namespace Game
         [SerializeField]
         private Heart _heart;
 
-        [SerializeField]
-        private Battle _battle;
+        [FormerlySerializedAs("_battle")] [SerializeField]
+        private BattleStateMachine battleStateMachine;
 
         [SerializeField]
         private Dialog _dialog;
@@ -70,7 +71,7 @@ namespace Game
         {
             GameData.Character = _character;
             GameData.Heart = _heart;
-            GameData.Battle = _battle;
+            GameData.BattleStateMachine = battleStateMachine;
             GameData.Dialog = _dialog;
             GameData.Monolog = _monolog;
             GameData.Select = _select;

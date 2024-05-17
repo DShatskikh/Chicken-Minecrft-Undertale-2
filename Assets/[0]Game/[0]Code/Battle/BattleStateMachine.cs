@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 
 namespace Game
 {
-    public class Battle : MonoBehaviour
+    public class BattleStateMachine : MonoBehaviour
     {
         [SerializeField] 
         private float _speedPlacement;
@@ -22,6 +22,10 @@ namespace Game
         [SerializeField]
         private PlaySound _sparePlaySound;
 
+        [SerializeField]
+        private Arena _arena;
+        
+        [Header("StateMachine")]
         [SerializeField]
         private StateMachine _stateMachine;
 

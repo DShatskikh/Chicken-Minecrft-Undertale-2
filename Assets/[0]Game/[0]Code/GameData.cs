@@ -14,7 +14,7 @@ namespace Game
         public static EnemyData EnemyData { get; set; }
         public static Transform CharacterPoint { get; set; }
         public static Transform EnemyPoint { get; set; }
-        public static Battle Battle { get; set; }
+        public static BattleStateMachine BattleStateMachine { get; set; }
         public static Dialog Dialog { get; set; }
         public static Button UseButton { get; set; }
         public static Joystick Joystick { get; set; }

@@ -1,22 +1,40 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using MoreMountains.Feedbacks;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace Game
 {
     public class PlayerTurnState : BaseState
     {
+        [SerializeField]
+        private Button[] _buttons;
+
+        [SerializeField]
+        private MMF_Player _showFeedback;
+
         public override void Enter()
         {
-            throw new System.NotImplementedException();
+            GameData.InputCanvas.SetActive(false);
+            StartCoroutine(AwaitEnter()); 
         }
 
         public override void Upgrade()
         {
-            throw new System.NotImplementedException();
+            
         }
 
         public override void Exit()
         {
-            throw new System.NotImplementedException();
+            
+        }
+
+        private IEnumerator AwaitEnter()
+        {
+            yield return _showFeedback.PlayFeedbacksCoroutine(Vector3.zero);
+
+            foreach (var button in _buttons) 
+                button.interactable = true;
         }
     }
 }

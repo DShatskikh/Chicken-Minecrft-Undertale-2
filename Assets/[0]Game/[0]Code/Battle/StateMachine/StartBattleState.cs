@@ -1,15 +1,28 @@
 ﻿using Super_Auto_Mobs;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Game
 {
     public class StartBattleState : BaseState
     {
+        [SerializeField]
+        private StateMachine _stateMachine;
+        
+        [SerializeField]
+        private Button[] _buttons;
+        
+        [SerializeField]
+        private PlayerTurnState _playerTurnState;
+        
+        [SerializeField]
+        private CanvasGroup _canvasGroup;
+        
         public override void Enter()
         {
             GameData.TimerBeforeAdsYG.gameObject.SetActive(false);
-            GameData.Battle.transform.position = Camera.main.transform.position.SetZ(0).AddY(-3.5f) +
-                                                 (Vector3) GameData.EnemyData.StartBattleTrigger.Offset;
+            //GameData.Battle.transform.position = Camera.main.transform.position.SetZ(0).AddY(-3.5f) +
+            //                                     (Vector3) GameData.EnemyData.StartBattleTrigger.Offset;
             
             GameData.EnemyData.GameObject.transform.SetParent(GameData.EnemyPoint);
 
@@ -28,16 +41,22 @@ namespace Game
             
             GameData.BattleProgress = 0;
             EventBus.OnBattleProgressChange?.Invoke(0);
+            
+            foreach (var button in _buttons) 
+                button.interactable = false;
+            
+            _canvasGroup.alpha = 0;
+            _stateMachine.ChangeState(_playerTurnState);
         }
 
         public override void Upgrade()
         {
-            throw new System.NotImplementedException();
+            
         }
 
         public override void Exit()
         {
-            throw new System.NotImplementedException();
+            
         }
     }
 }
