@@ -1,9 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Super_Auto_Mobs;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 using YG;
+using Button = UnityEngine.UI.Button;
 using Random = UnityEngine.Random;
 
 namespace Game
@@ -22,27 +25,52 @@ namespace Game
         [SerializeField]
         private PlaySound _sparePlaySound;
 
-        [SerializeField]
-        private Arena _arena;
-        
-        [Header("StateMachine")]
-        [SerializeField]
-        private StateMachine _stateMachine;
-
-        [SerializeField]
-        private StartBattleState _startBattleState;
-        
-        [SerializeField]
-        private PlayerTurnState _playerTurnState;
-
         private Label _healthLabel;
         private Label _enemyHealthLabel;
-        private int _attackIndex;
         private Vector2 _normalWorldCharacterPosition;
         private Coroutine _coroutine;
-        private AudioClip _previousSound;
         private Vector2 _enemyStartPosition;
         private GameObject _attack;
+
+        [HideInInspector]
+        public BaseState CurrentState;
+        
+        public int AttackIndex;
+        public AudioClip PreviousSound;
+        public Button[] Buttons;
+        public CanvasGroup CanvasGroup;
+        public Arena Arena;
+        
+        [Header("StateMachine")]
+        public StartBattleState StartBattleState;
+        public PlayerTurnState PlayerTurnState;
+        public AttackState AttackState;
+        public EnemyTurnState EnemyTurnState;
+
+        private void Update()
+        {
+            CurrentState.Upgrade();
+        }
+
+        public void StartBattle()
+        {
+            gameObject.SetActive(true);
+            Initialize(StartBattleState);
+        }
+
+        public void Initialize(BaseState state)
+        {
+            CurrentState = state;
+            state.Enter();
+        }
+
+        public void ChangeState(BaseState state)
+        {
+            CurrentState.Exit();
+
+            CurrentState = state;
+            state.Enter();
+        }
 
         private void OnDisable()
         {
@@ -63,20 +91,6 @@ namespace Game
             }
         }
 
-        public void StartBattle()
-        {
-            _previousSound = GameData.MusicAudioSource.clip;
-            gameObject.SetActive(true);
-            _attackIndex = 0;
-            
-            _stateMachine.Initialize(_startBattleState);
-            
-            if (_coroutine != null)
-                StopCoroutine(_coroutine);
-            
-            _coroutine = StartCoroutine(AwaitBattle());
-        }
-        
         private IEnumerator AwaitBattle()
         {
             EventBus.OnDamage += OnDamage;
@@ -91,20 +105,20 @@ namespace Game
             {
                 GameData.Arena.SetActive(true);
                 yield return new WaitForSeconds(0.5f);
-                _attack = Instantiate(_attacks[_attackIndex], transform);
+                _attack = Instantiate(_attacks[AttackIndex], transform);
                 yield return new WaitForSeconds(10);
                 Destroy(_attack.gameObject);
-                _attackIndex++;
+                AttackIndex++;
 
-                if (_attackIndex >= _attacks.Length)
+                if (AttackIndex >= _attacks.Length)
                 {
-                    _attackIndex = Random.Range(0, _attacks.Length);
+                    AttackIndex = Random.Range(0, _attacks.Length);
 
                     if (GameData.EnemyData.EnemyConfig.SkipAttack != null)
                     {
-                        while (_attacks[_attackIndex] == GameData.EnemyData.EnemyConfig.SkipAttack)
+                        while (_attacks[AttackIndex] == GameData.EnemyData.EnemyConfig.SkipAttack)
                         {
-                            _attackIndex = Random.Range(0, _attacks.Length);
+                            AttackIndex = Random.Range(0, _attacks.Length);
                         }
                     }
                 }
@@ -165,7 +179,7 @@ namespace Game
             GameData.Character.enabled = true;
             GameData.Character.GetComponent<Collider2D>().isTrigger = false;
 
-            GameData.MusicAudioSource.clip = _previousSound;
+            GameData.MusicAudioSource.clip = PreviousSound;
             GameData.MusicAudioSource.Play();
 
             var eventParams = new Dictionary<string, string>

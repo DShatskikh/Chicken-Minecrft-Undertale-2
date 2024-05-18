@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿using System.Collections;
 
 namespace Game
 {
@@ -6,17 +6,22 @@ namespace Game
     {
         public override void Enter()
         {
-            throw new System.NotImplementedException();
+            StartCoroutine(AwaitEnter());
         }
 
         public override void Upgrade()
         {
-            throw new System.NotImplementedException();
+            
         }
 
         public override void Exit()
         {
-            throw new System.NotImplementedException();
+            
+        }
+
+        private IEnumerator AwaitEnter()
+        {
+            yield return GameData.BattleStateMachine.Arena.AwaitToDefault();
         }
     }
 }

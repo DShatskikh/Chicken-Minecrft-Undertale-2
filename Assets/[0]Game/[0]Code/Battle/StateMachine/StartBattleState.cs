@@ -1,25 +1,15 @@
-﻿using Super_Auto_Mobs;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 namespace Game
 {
     public class StartBattleState : BaseState
     {
-        [SerializeField]
-        private StateMachine _stateMachine;
-        
-        [SerializeField]
-        private Button[] _buttons;
-        
-        [SerializeField]
-        private PlayerTurnState _playerTurnState;
-        
-        [SerializeField]
-        private CanvasGroup _canvasGroup;
-        
         public override void Enter()
         {
+            var stateMachine = GameData.BattleStateMachine;
+            stateMachine.PreviousSound = GameData.MusicAudioSource.clip;
+            stateMachine.AttackIndex = 0;
+            
             GameData.TimerBeforeAdsYG.gameObject.SetActive(false);
             //GameData.Battle.transform.position = Camera.main.transform.position.SetZ(0).AddY(-3.5f) +
             //                                     (Vector3) GameData.EnemyData.StartBattleTrigger.Offset;
@@ -42,11 +32,11 @@ namespace Game
             GameData.BattleProgress = 0;
             EventBus.OnBattleProgressChange?.Invoke(0);
             
-            foreach (var button in _buttons) 
+            foreach (var button in stateMachine.Buttons) 
                 button.interactable = false;
             
-            _canvasGroup.alpha = 0;
-            _stateMachine.ChangeState(_playerTurnState);
+            stateMachine.CanvasGroup.alpha = 0;
+            stateMachine.ChangeState(stateMachine.PlayerTurnState);
         }
 
         public override void Upgrade()
