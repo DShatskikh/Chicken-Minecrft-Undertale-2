@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Game
 {
@@ -7,12 +8,15 @@ namespace Game
         [SerializeField] 
         private Rigidbody2D _rigidbody;
 
-        [SerializeField] 
-        private float _speed;
+        [FormerlySerializedAs("_speed")] [SerializeField] 
+        private float _idleSpeed = 3;
 
-        public void Move(Vector2 direction)
+        [SerializeField] 
+        private float _runSpeed = 5;
+        
+        public void Move(Vector2 direction, bool isRun)
         {
-            _rigidbody.velocity = direction * _speed;
+            _rigidbody.velocity = direction *  (isRun ? _runSpeed : _idleSpeed);
         }
     }
 }

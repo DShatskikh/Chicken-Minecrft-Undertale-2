@@ -25,15 +25,20 @@ namespace Game
 
         public void Step()
         {
-            _animator.SetBool("IsMove", true);
+            _animator.SetFloat("Speed", 0.5f);
         }
 
         public void Idle()
         {
-            _animator.SetBool("IsMove", false);
+            _animator.SetFloat("Speed", 0);
         }
 
         public void DangerSwitch(bool isActive) => 
             _danger.SetActive(isActive);
+
+        public void Run()
+        {
+            _animator.SetFloat("Speed", 1);
+        }
     }
 }
