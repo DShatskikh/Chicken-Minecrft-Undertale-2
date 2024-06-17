@@ -12,10 +12,17 @@ namespace Game
 
         [SerializeField]
         private MMF_Player _hideFeedback;
+
+        [SerializeField]
+        private ButtonManager _buttonManager;
+
+        [SerializeField]
+        private TypingText _typingText;
         
         public override void Enter()
         {
             GameData.InputCanvas.SetActive(false);
+            _typingText.Write($"*{GameData.EnemyData.EnemyConfig.DisplayName} преграждает вам путь");
             StartCoroutine(AwaitEnter());
         }
 
@@ -30,6 +37,8 @@ namespace Game
             
             foreach (var button in GameData.BattleStateMachine.Buttons) 
                 button.interactable = false;
+            
+            _typingText.Write("");
         }
 
         private IEnumerator AwaitEnter()
@@ -38,6 +47,8 @@ namespace Game
 
             foreach (var button in GameData.BattleStateMachine.Buttons) 
                 button.interactable = true;
+            
+            _buttonManager.Enable();
         }
     }
 }

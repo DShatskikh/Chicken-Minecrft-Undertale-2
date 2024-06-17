@@ -17,17 +17,35 @@ namespace Game
         private AudioSource _audioSource;
 
         private Coroutine _coroutine;
+        public bool IsTyping { get; set; }
 
         private void OnEnable()
         {
-            if (_coroutine != null)
-                StopCoroutine(_coroutine);
-            
-            _coroutine = StartCoroutine(TypingProcess());
+            Write(_text);
         }
 
-        private IEnumerator TypingProcess()
+        private void Update()
         {
+            if (Input.GetButtonDown("Cancel") && _coroutine != null)
+            {
+                IsTyping = false;
+                StopCoroutine(_coroutine);
+                _label.text = _text;
+            }
+        }
+
+        public void Write(string text)
+        {
+            if (_coroutine != null)
+                StopCoroutine(_coroutine);
+
+            _text = text;
+            _coroutine = StartCoroutine(AwaitWrite());
+        }
+        
+        private IEnumerator AwaitWrite()
+        {
+            IsTyping = true;
             _label.text = "";
 
             var currentText = "";
@@ -36,7 +54,10 @@ namespace Game
             while (_countSymbol != _text.Length)
             {
                 currentText += _text[_countSymbol];
-                _audioSource.Play();
+                
+                if (_audioSource)
+                    _audioSource.Play();
+                
                 _label.text = currentText;
 
                 for (int i = currentText.Length; i < _text.Length; i++)
@@ -47,6 +68,8 @@ namespace Game
                 yield return new WaitForSeconds(0.05f);
                 _countSymbol++;
             }
+
+            IsTyping = false;
         }
     }
 }

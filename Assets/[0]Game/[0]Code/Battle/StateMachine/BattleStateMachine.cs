@@ -44,7 +44,7 @@ namespace Game
         [Header("StateMachine")]
         public StartBattleState StartBattleState;
         public PlayerTurnState PlayerTurnState;
-        public AttackState AttackState;
+        [FormerlySerializedAs("AttackState")] public BanState banState;
         public EnemyTurnState EnemyTurnState;
 
         private void Update()
@@ -56,6 +56,11 @@ namespace Game
         {
             gameObject.SetActive(true);
             Initialize(StartBattleState);
+        }
+
+        public void CloseBattle()
+        {
+            gameObject.SetActive(false);
         }
 
         public void Initialize(BaseState state)
@@ -113,18 +118,8 @@ namespace Game
                 if (AttackIndex >= _attacks.Length)
                 {
                     AttackIndex = Random.Range(0, _attacks.Length);
-
-                    if (GameData.EnemyData.EnemyConfig.SkipAttack != null)
-                    {
-                        while (_attacks[AttackIndex] == GameData.EnemyData.EnemyConfig.SkipAttack)
-                        {
-                            AttackIndex = Random.Range(0, _attacks.Length);
-                        }
-                    }
                 }
-
-                GameData.BattleProgress += GameData.EnemyData.EnemyConfig.ProgressAttack;
-
+                
                 if (GameData.BattleProgress > 100)
                     GameData.BattleProgress = 100;
                 
@@ -145,13 +140,8 @@ namespace Game
             
             _enemyStartPosition = enemyTransform.position;
             _normalWorldCharacterPosition = characterTransform.position;
-            
-            while (characterTransform.position != GameData.CharacterPoint.position || enemyTransform.position != GameData.EnemyPoint.position)
-            {
-                characterTransform.position = Vector2.MoveTowards(characterTransform.position, GameData.CharacterPoint.position, Time.deltaTime * _speedPlacement);
-                enemyTransform.position = Vector2.MoveTowards(enemyTransform.position, GameData.EnemyPoint.position, Time.deltaTime * _speedPlacement);
-                yield return null;
-            }
+
+            yield return null;
         }
 
         private void OnDeath()
@@ -189,12 +179,12 @@ namespace Game
             
             YandexMetrica.Send("Wins", eventParams);
             
-            GameData.Monolog.Show(new []{$"*Вы победили!\n*Ваше максимальное здоровье увеличилось\nна {GameData.EnemyData.EnemyConfig.WinPrize}"});
+            GameData.Monolog.Show(new []{$"*Вы победили!\n*Ваше максимальное здоровье увеличилось\nна {GameData.EnemyData.EnemyConfig.HealthPrize}"});
             EventBus.OnCloseMonolog += () =>
             {
                 _levelUpPlaySound.Play();
                 
-                GameData.MaxHealth += GameData.EnemyData.EnemyConfig.WinPrize;
+                GameData.MaxHealth += GameData.EnemyData.EnemyConfig.HealthPrize;
                 EventBus.OnPlayerWin.Invoke(GameData.EnemyData.EnemyConfig);
                 EventBus.OnPlayerWin = null;
                 GameData.Saver.Save();

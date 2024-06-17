@@ -122,7 +122,7 @@ namespace Game
 
         private IEnumerator TakeDamage()
         {
-            GameData.Health -= GameData.EnemyData.EnemyConfig.Attack;
+            GameData.Health -= GameData.EnemyData.EnemyConfig.Damage;
             EventBus.OnDamage?.Invoke(1);
             EventBus.OnHealthChange?.Invoke(GameData.MaxHealth, GameData.Health);
             _damageSource.Play();

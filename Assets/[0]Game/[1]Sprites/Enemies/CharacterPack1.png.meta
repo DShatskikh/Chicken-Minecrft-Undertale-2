@@ -316,6 +316,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: CharacterPack1_8
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 126
+        width: 12
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 164c082a0f02254478526ee3e0842a0b
+      internalID: -763088408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -335,6 +356,7 @@ TextureImporter:
       CharacterPack1_5: -1442672763
       CharacterPack1_6: -2144509047
       CharacterPack1_7: -1884580560
+      CharacterPack1_8: -763088408
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

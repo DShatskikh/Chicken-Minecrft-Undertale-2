@@ -67,6 +67,12 @@ namespace Game
         [SerializeField]
         private TimerBeforeAdsYG _timerBeforeAds;
 
+        [SerializeField]
+        private UIPanelInputController _inputController;
+
+        [SerializeField]
+        private UIPanelStateController _stateController;
+
         private void Awake()
         {
             GameData.Character = _character;
@@ -78,8 +84,6 @@ namespace Game
             GameData.UseButton = _useButton;
             GameData.Joystick = _joystick;
             GameData.Arena = _arena;
-            GameData.CharacterPoint = _characterPoint;
-            GameData.EnemyPoint = _enemyPoint;
             GameData.CinemachineConfiner = _cinemachineConfiner;
             GameData.Locations = _locations.Locations1;
             GameData.Introduction = _introduction;
@@ -88,6 +92,8 @@ namespace Game
             GameData.InputCanvas = _inputCanvas;
             GameData.GameOver = _gameOver;
             GameData.TimerBeforeAdsYG = _timerBeforeAds;
+            GameData.InputController = _inputController;
+            GameData.StateController = _stateController;
         }
 
         private void Start()

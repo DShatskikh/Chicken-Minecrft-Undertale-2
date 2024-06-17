@@ -60,7 +60,10 @@ namespace Game
 
         [SerializeField] 
         private AudioClip _clickSound;
-        
+
+        [SerializeField]
+        private Sprite _heartSprite;
+
         private void Awake()
         {
             if (FindObjectsOfType<Startup>().Length > 1)
@@ -104,6 +107,7 @@ namespace Game
             GameData.TextAudioSource = _textAudioSource;
             GameData.Mixer = _mixer;
             GameData.ClickSound = _clickSound;
+            GameData.HeartSprite = _heartSprite;
             
             GameData.Health = GameData.MaxHealth;
             Application.targetFrameRate = 60;

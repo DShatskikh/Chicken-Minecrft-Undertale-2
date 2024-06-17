@@ -12,8 +12,6 @@ namespace Game
         public static Character Character;
         public static Heart Heart { get; set; }
         public static EnemyData EnemyData { get; set; }
-        public static Transform CharacterPoint { get; set; }
-        public static Transform EnemyPoint { get; set; }
         public static BattleStateMachine BattleStateMachine { get; set; }
         public static Dialog Dialog { get; set; }
         public static Button UseButton { get; set; }
@@ -32,6 +30,8 @@ namespace Game
         public static Startup Startup { get; set; }
         public static AudioSource TextAudioSource { get; set; }
         public static AudioClip ClickSound { get; set; }
+        public static Sprite HeartSprite { get; set; }
+        public static PlayerTurn CurrentPlayerTurn { get; set; }
 
         public static IEnumerable<Location> Locations;
 
@@ -61,5 +61,7 @@ namespace Game
         public static bool IsCheat;
         public static bool IsNotFirstPlay;
         public static TimerBeforeAdsYG TimerBeforeAdsYG;
+        public static UIPanelInputController InputController;
+        public static UIPanelStateController StateController;
     }
 }
