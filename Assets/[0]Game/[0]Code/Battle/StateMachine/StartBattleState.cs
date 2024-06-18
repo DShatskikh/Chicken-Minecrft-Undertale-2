@@ -38,7 +38,7 @@ namespace Game
             //EventBus.OnHealthChange.Invoke(GameData.MaxHealth, GameData.Health);
             
             GameData.BattleProgress = 0;
-            EventBus.OnBattleProgressChange?.Invoke(0);
+            SignalBus.OnBattleProgressChange?.Invoke(0);
             
             foreach (var button in stateMachine.Buttons) 
                 button.interactable = false;

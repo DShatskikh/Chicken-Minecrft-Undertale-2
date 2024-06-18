@@ -14,7 +14,7 @@ namespace Game
         public void Open()
         {
             GameData.Monolog.Show(_texts);
-            EventBus.OnCloseMonolog += _endEvent.Invoke;
+            SignalBus.OnCloseMonolog += _endEvent.Invoke;
         }
     }
 }

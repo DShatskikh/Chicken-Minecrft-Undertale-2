@@ -15,12 +15,12 @@ namespace Game
 
         private void OnEnable()
         {
-            EventBus.OnBattleProgressChange += ChangeProgress;
+            SignalBus.OnBattleProgressChange += ChangeProgress;
         }
 
         private void OnDisable()
         {
-            EventBus.OnBattleProgressChange -= ChangeProgress;
+            SignalBus.OnBattleProgressChange -= ChangeProgress;
         }
 
         private void Start()

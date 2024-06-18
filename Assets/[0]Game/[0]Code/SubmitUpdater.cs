@@ -8,7 +8,7 @@ namespace Game
         {
             if (Input.GetButtonDown("Submit"))
             {
-                EventBus.OnSubmit?.Invoke();
+                SignalBus.OnSubmit?.Invoke();
             }
         }
     }

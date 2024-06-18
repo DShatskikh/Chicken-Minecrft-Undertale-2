@@ -68,7 +68,7 @@ namespace Game
             if (GameData.BattleProgress > 100)
                 GameData.BattleProgress = 100;
             
-            EventBus.OnBattleProgressChange?.Invoke(GameData.BattleProgress);
+            SignalBus.OnBattleProgressChange?.Invoke(GameData.BattleProgress);
         }
     }
 }

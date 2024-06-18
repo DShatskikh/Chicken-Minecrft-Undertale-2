@@ -79,8 +79,8 @@ namespace Game
 
         private void OnDisable()
         {
-            EventBus.OnDeath = null;
-            EventBus.OnDamage = null;
+            SignalBus.OnDeath = null;
+            SignalBus.OnDamage = null;
             
             if (_attack)
                 Destroy(_attack.gameObject);
@@ -98,8 +98,8 @@ namespace Game
 
         private IEnumerator AwaitBattle()
         {
-            EventBus.OnDamage += OnDamage;
-            EventBus.OnDeath += OnDeath;
+            SignalBus.OnDamage += OnDamage;
+            SignalBus.OnDeath += OnDeath;
             yield return Intro();
 
             var _attacks = GameData.EnemyData.EnemyConfig.Attacks;
@@ -123,7 +123,7 @@ namespace Game
                 if (GameData.BattleProgress > 100)
                     GameData.BattleProgress = 100;
                 
-                EventBus.OnBattleProgressChange?.Invoke(GameData.BattleProgress);
+                SignalBus.OnBattleProgressChange?.Invoke(GameData.BattleProgress);
             }
             
             yield return new WaitForSeconds(1);
@@ -180,13 +180,13 @@ namespace Game
             YandexMetrica.Send("Wins", eventParams);
             
             GameData.Monolog.Show(new []{$"*Вы победили!\n*Ваше максимальное здоровье увеличилось\nна {GameData.EnemyData.EnemyConfig.HealthPrize}"});
-            EventBus.OnCloseMonolog += () =>
+            SignalBus.OnCloseMonolog += () =>
             {
                 _levelUpPlaySound.Play();
                 
                 GameData.MaxHealth += GameData.EnemyData.EnemyConfig.HealthPrize;
-                EventBus.OnPlayerWin.Invoke(GameData.EnemyData.EnemyConfig);
-                EventBus.OnPlayerWin = null;
+                SignalBus.OnPlayerWin.Invoke(GameData.EnemyData.EnemyConfig);
+                SignalBus.OnPlayerWin = null;
                 GameData.Saver.Save();
                 GameData.TimerBeforeAdsYG.gameObject.SetActive(true);
             };

@@ -18,7 +18,7 @@ namespace Game
         {
             _startEvent.Invoke();
             GameData.Dialog.SetReplicas(_replicas);
-            EventBus.OnCloseDialog += _endEvent.Invoke;
+            SignalBus.OnCloseDialog += _endEvent.Invoke;
         }
     }
 }

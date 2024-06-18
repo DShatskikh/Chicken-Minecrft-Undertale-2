@@ -2,9 +2,9 @@
 {
     public enum UIPanelStateType
     {
-        Message = 0,
-        Menu = 1,
-        Attack = 2,
-        Items = 3
+        Menu = 0,
+        Ban = 1,
+        Items = 2,
+        Mercy = 3,
     }
 }

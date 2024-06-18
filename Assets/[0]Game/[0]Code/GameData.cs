@@ -63,5 +63,6 @@ namespace Game
         public static TimerBeforeAdsYG TimerBeforeAdsYG;
         public static UIPanelInputController InputController;
         public static UIPanelStateController StateController;
+        public static MenuIconStorage MenuIconStorage;
     }
 }

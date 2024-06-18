@@ -15,7 +15,7 @@ namespace Game
 
         private void Awake()
         {
-            _activePanel = GetPanelByType(UIPanelStateType.Message);
+            _activePanel = GetPanelByType(UIPanelStateType.Menu);
             _activePanel.Activate(true);
         }
 

@@ -7,7 +7,7 @@ namespace Game
         private MenuOptionType _optionType;
         public MenuOptionType OptionType { get => _optionType; }
 
-        public MenuOptionViewModel(string name, bool isSelected, MenuOptionType optionType, Sprite icon) : base(name, isSelected, icon)
+        public MenuOptionViewModel(string name, bool isSelected, MenuOptionType optionType) : base(name, isSelected)
         {
             _optionType = optionType;
         }

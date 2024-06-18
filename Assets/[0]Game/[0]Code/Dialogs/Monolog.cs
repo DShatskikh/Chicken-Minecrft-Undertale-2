@@ -27,7 +27,7 @@ namespace Game
             
             GameData.Character.enabled = false;
             _button.onClick.AddListener(Next);
-            EventBus.OnSubmit += Next;
+            SignalBus.OnSubmit += Next;
 
             SetText("");
             
@@ -81,11 +81,11 @@ namespace Game
 
         private void Close()
         {
-            EventBus.OnSubmit = null;
+            SignalBus.OnSubmit = null;
             GameData.Character.enabled = true;
             gameObject.SetActive(false);
-            EventBus.OnCloseMonolog?.Invoke();
-            EventBus.OnCloseMonolog = null;
+            SignalBus.OnCloseMonolog?.Invoke();
+            SignalBus.OnCloseMonolog = null;
             
             _button.onClick.RemoveAllListeners();
         }

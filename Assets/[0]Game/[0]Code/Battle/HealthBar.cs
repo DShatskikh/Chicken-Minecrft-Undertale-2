@@ -15,13 +15,13 @@ namespace Game
 
         private void OnEnable()
         {
-            EventBus.OnHealthChange += UpdateHealthView;
+            SignalBus.OnHealthChange += UpdateHealthView;
             UpdateHealthView(GameData.MaxHealth,GameData.Health);
         }
 
         private void OnDisable()
         {
-            EventBus.OnHealthChange -= UpdateHealthView;
+            SignalBus.OnHealthChange -= UpdateHealthView;
         }
 
         private void UpdateHealthView(int maxValue, int value)

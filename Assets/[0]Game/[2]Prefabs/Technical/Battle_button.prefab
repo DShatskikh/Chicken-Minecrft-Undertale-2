@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6632666949396224600}
   - component: {fileID: 2021562470417433756}
   - component: {fileID: 3408615817296328493}
-  - component: {fileID: 53537160862203412}
   - component: {fileID: -1481010956161340347}
   m_Layer: 5
   m_Name: Battle_button
@@ -123,43 +122,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2021562470417433756}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 53537160862203412}
-        m_TargetAssemblyTypeName: Game.BattleButton, Assembly-CSharp
-        m_MethodName: Click
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &53537160862203412
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2969202520468739342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9754dda87e2447c19485a91a2c296c8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RightButton: {fileID: 0}
-  LeftButton: {fileID: 0}
-  UpButton: {fileID: 0}
-  DownButton: {fileID: 0}
-  _event:
-    m_PersistentCalls:
       m_Calls: []
-  _view: {fileID: 7933848984344388521}
-  _buttonFrame: {fileID: 2021562470417433756}
-  _label: {fileID: 1008223250752415960}
-  _selectColor: {r: 0.9960785, g: 1, b: 0, a: 1}
-  _unselectColor: {r: 0, g: 0.47058827, b: 1, a: 1}
 --- !u!114 &-1481010956161340347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,7 +137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _slotName: {fileID: 1008223250752415960}
   _selectIcon: {fileID: 7933848984344388521}
-  _frame: {fileID: 2021562470417433756}
+  _border: {fileID: 2021562470417433756}
   _selectColor: {r: 0.9960785, g: 1, b: 0, a: 1}
   _notSelectColor: {r: 0, g: 0.47058827, b: 1, a: 1}
 --- !u!1 &3656625402776414288

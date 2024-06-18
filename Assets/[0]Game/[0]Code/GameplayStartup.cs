@@ -73,6 +73,9 @@ namespace Game
         [SerializeField]
         private UIPanelStateController _stateController;
 
+        [SerializeField]
+        private MenuIconStorage _menuIconStorage;
+        
         private void Awake()
         {
             GameData.Character = _character;
@@ -94,6 +97,7 @@ namespace Game
             GameData.TimerBeforeAdsYG = _timerBeforeAds;
             GameData.InputController = _inputController;
             GameData.StateController = _stateController;
+            GameData.MenuIconStorage = _menuIconStorage;
         }
 
         private void Start()

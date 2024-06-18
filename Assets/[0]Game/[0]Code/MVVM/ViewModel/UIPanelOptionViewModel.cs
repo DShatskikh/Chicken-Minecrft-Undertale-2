@@ -7,19 +7,16 @@ namespace Game
     {
         private string _name;
         private bool _isSelected;
-        private Sprite _icon;
 
         public bool IsSelected { get => _isSelected; }
         public string Name { get => _name; }
-        public Sprite Icon { get => _icon; }
 
         public event Action<bool> SelectionChanged;
 
-        public UIPanelOptionViewModel(string name, bool isSelected, Sprite icon)
+        public UIPanelOptionViewModel(string name, bool isSelected)
         {
             _name = name;
             _isSelected = isSelected;
-            _icon = icon;
         }
 
         public void SetSelected(bool isSelected)

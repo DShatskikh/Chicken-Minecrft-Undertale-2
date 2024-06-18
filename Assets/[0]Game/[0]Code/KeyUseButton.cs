@@ -14,12 +14,12 @@ namespace Game
 
         private void OnEnable()
         {
-            EventBus.OnSubmit += OnSubmit;
+            SignalBus.OnSubmit += OnSubmit;
         }
 
         private void OnSubmit()
         {
-            EventBus.OnSubmit = null;
+            SignalBus.OnSubmit = null;
             _button.onClick.Invoke();
         }
     }

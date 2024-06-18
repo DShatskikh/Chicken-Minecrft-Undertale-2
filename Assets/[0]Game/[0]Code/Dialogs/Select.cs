@@ -46,7 +46,7 @@ namespace Game
             _noAction = noAction;
             
             _yesButton.onClick.AddListener(SelectTrue);
-            EventBus.OnSubmit += SelectTrue;
+            SignalBus.OnSubmit += SelectTrue;
             
             _noButton.onClick.AddListener(SelectFalse);
 
@@ -75,14 +75,14 @@ namespace Game
 
         private void SelectTrue()
         {
-            EventBus.OnSubmit = null;
+            SignalBus.OnSubmit = null;
             Close();
             _yesAction?.Invoke();
         }
         
         private void SelectFalse()
         {
-            EventBus.OnSubmit = null;
+            SignalBus.OnSubmit = null;
             Close();
             _noAction?.Invoke();
         }

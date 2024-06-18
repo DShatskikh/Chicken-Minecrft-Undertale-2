@@ -26,7 +26,7 @@ namespace Game
                 StopCoroutine(_coroutine);
 
             _button.onClick.AddListener(Next);
-            EventBus.OnSubmit += Next;
+            SignalBus.OnSubmit += Next;
             
             GameData.Character.enabled = false;
             _replicas = replicas;
@@ -92,11 +92,11 @@ namespace Game
 
         private void Close()
         {
-            EventBus.OnSubmit = null;
+            SignalBus.OnSubmit = null;
             GameData.Character.enabled = true;
             gameObject.SetActive(false);
-            EventBus.OnCloseDialog?.Invoke();
-            EventBus.OnCloseDialog = null;
+            SignalBus.OnCloseDialog?.Invoke();
+            SignalBus.OnCloseDialog = null;
             
             _button.onClick.RemoveAllListeners();
         }

@@ -40,7 +40,7 @@ namespace Game
                 GetComponent<Collider2D>().enabled = false;
             
             GameData.BattleStateMachine.StartBattle();
-            EventBus.OnPlayerWin += OnPlayerWin;
+            SignalBus.OnPlayerWin += OnPlayerWin;
         }
 
         private void OnPlayerWin(EnemyConfig config)

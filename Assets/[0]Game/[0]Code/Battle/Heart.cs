@@ -123,8 +123,8 @@ namespace Game
         private IEnumerator TakeDamage()
         {
             GameData.Health -= GameData.EnemyData.EnemyConfig.Damage;
-            EventBus.OnDamage?.Invoke(1);
-            EventBus.OnHealthChange?.Invoke(GameData.MaxHealth, GameData.Health);
+            SignalBus.OnDamage?.Invoke(1);
+            SignalBus.OnHealthChange?.Invoke(GameData.MaxHealth, GameData.Health);
             _damageSource.Play();
             _shield.gameObject.SetActive(false);
             yield return new WaitForSeconds(1);
@@ -137,7 +137,7 @@ namespace Game
 
         private void Death()
         {
-            EventBus.OnDeath?.Invoke();
+            SignalBus.OnDeath?.Invoke();
             GameData.GameOver.SetActive(true);
 
             Analytics.CustomEvent("Death " + GameData.EnemyData.EnemyConfig.name);
